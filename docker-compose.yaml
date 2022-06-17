@@ -1,0 +1,11 @@
+version: '1'
+
+services:
+  db:
+    image: mariadb
+    restart: always
+    container_name: mariadb-spotifree
+    ports: 
+      - "3306:3306" 
+    environment:
+      MARIADB_ROOT_PASSWORD: root

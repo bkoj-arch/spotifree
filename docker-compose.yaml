@@ -9,3 +9,31 @@ services:
       - "3306:3306" 
     environment:
       MARIADB_ROOT_PASSWORD: root
+    networks:
+      spotifree:
+        ipv4_address: 10.5.0.3
+
+  core:
+    image: arch_core
+    container_name: agent-deploie
+    build:
+      context: agent_deploie
+      dockerfile: ../agent_deploie.dockerfile
+    volumes:
+      - vol_deploie:/var/spotifree
+    networks:
+      spotifree:
+          ipv4_address: 10.5.0.2
+
+volumes:
+  vol_deploie:
+
+networks:
+    spotifree:
+      name: spotifree
+      driver: bridge
+      ipam:
+        config:
+          - subnet: 10.5.0.0/16
+            gateway: 10.5.0.1
+

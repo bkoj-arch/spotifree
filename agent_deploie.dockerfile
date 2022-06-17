@@ -4,7 +4,8 @@ FROM archlinux
 ENV user=jenkins
 
 RUN pacman -Sy --noconfirm
-RUN pacman -S openssh mariadb --noconfirm
+RUN pacman -S openssh mariadb gcc python python-pip --noconfirm
+RUN pip install mariadb
 
 RUN useradd -m $user
 RUN mkdir /home/jenkins/.ssh && chown jenkins: -R /home/jenkins

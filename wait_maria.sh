@@ -1,9 +1,11 @@
-
-ret=$(mariadb -uroot -proot -h 10.5.0.3)
+echo s
+mariadb -uroot -proot -h 10.5.0.3  -e ";"
+ret=$?
 while [[ $ret != 0  ]]
 do
 
-	ret=$(mariadb -uroot -proot -h 10.5.0.3)
+	mariadb -uroot -proot -h 10.5.0.3 -e ";"
+	ret=$?
 	sleep 1
 done
 

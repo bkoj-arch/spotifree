@@ -19,6 +19,7 @@ services:
     build:
       context: agent_deploie
       dockerfile: ../agent_deploie.dockerfile
+    
     volumes:
       - vol_deploie:/var/spotifree
     networks:
@@ -28,10 +29,58 @@ services:
     depends_on:
       - "db"  
   
+  ftp:
+    image: fauria/vsftpd
+    restart: always
+    container_name: vsftpd
+    environment:
+      - FTP_USER=root
+      - FTP_PASS=root
+      - PASV_ADDRESS=10.5.0.4
+
+    networks:
+      spotifree:
+        ipv4_address: 10.5.0.4
+    ports:
+      - "21:21"
+    volumes:
+      - vol_deploie:/home/vsftpd
+
+  http:
+    image: nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:433"
+    networks:
+      spotifree:
+        ipv4_address: 10.5.0.5
+    volumes:
+      - vol_sock_fcgi:/tmp/
+
+
+
+
+  backend1:
+    image: arch_back
+    container_name: backend1
+    build:
+      context: backend1
+      dockerfile: ../backend1.dockerfile
+    
+    volumes:
+      - vol_deploie:/var/spotifree
+      - vol_sock_fcgi:/tmp/ 
+    networks:
+      spotifree:
+          ipv4_address: 10.5.0.6
+    ports:
+      - "5000:5000" 
+
 
 volumes:
   vol_deploie:
-
+  vol_sock_fcgi:
 networks:
     spotifree:
       name: spotifree

@@ -10,7 +10,7 @@ def authentification(bdd, username, password):
 # Recherche de la liste des musiques corresppondant au mot-clef
 def rechercheMusique(bdd, mot_clef):
     resultatRecherche = bdd.resultatRechercheMusiques(mot_clef)
-    return resultatRecherche
+    return resultatReche-rche
 
 # Recherche des playlists appartenant à l'utilisateur
 def recherchePlaylists(bdd, nom_user):

@@ -7,11 +7,11 @@ class Bdd():
         self.cursor=None
         try:
             self.connection = mariadb.connect(
-            user="formation",
-            password="formation",
-            host="127.0.0.1",
+            user="root",
+            password="root",
+            host="10.5.0.3",
             port=3306,
-            database="SPOTIFREE"
+            database="spotifree"
         )
         except mariadb.Error as exception:
             print(f"Error connecting to MariaDB Platform: {exception}")

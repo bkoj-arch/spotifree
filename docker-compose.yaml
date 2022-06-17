@@ -24,6 +24,10 @@ services:
     networks:
       spotifree:
           ipv4_address: 10.5.0.2
+    
+    depends_on:
+      - "db"  
+  
 
 volumes:
   vol_deploie:

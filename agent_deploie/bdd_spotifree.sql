@@ -19,6 +19,8 @@
 -- Table structure for table `musique`
 --
 
+CREATE database spotifree;
+USE spotifree;
 DROP TABLE IF EXISTS `musique`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
